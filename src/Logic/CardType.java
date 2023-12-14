@@ -3,6 +3,7 @@ package Logic;
 public enum CardType {
     INFANTRY,
     CAVALRY,
-    ARTILLERY
+    ARTILLERY,
+    JOKER
     // Add more card types as needed
 }

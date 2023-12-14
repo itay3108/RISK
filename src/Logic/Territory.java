@@ -1,16 +1,15 @@
 package Logic;
 
-import java.util.List;
 
 public class Territory implements GameItem {
-    private String name;
+    private final String name;
     private Player owner;
     private int armies;
-    private List<Territory> neighbors;
+    private final Continent continent;
 
-    public Territory(String name) {
+    public Territory(String name, Continent continent) {
         this.name = name;
-        // Initialize other attributes as needed
+        this.continent = continent;
     }
 
     @Override
@@ -18,5 +17,24 @@ public class Territory implements GameItem {
         return name;
     }
 
-    // Additional getters and setters for owner, armies, neighbors, etc.
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+        owner.addOwnedTerritory(this);
+    }
+
+    public int getArmies() {
+        return armies;
+    }
+
+    public void setArmies(int armies) {
+        this.armies = armies;
+    }
+
+    public Continent getContinent() {
+        return continent;
+    }
 }

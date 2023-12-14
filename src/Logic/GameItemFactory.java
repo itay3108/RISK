@@ -8,17 +8,23 @@ public class GameItemFactory {
     }
 
     public static GameItemFactory getInstance() {
-        if (instance == null) {
-            instance = new GameItemFactory();
-        }
+        if (instance == null) instance = new GameItemFactory();
         return instance;
     }
 
-    public GameItem createItem(ItemType itemType, String name) {
-        try {
-            return itemType.getItemClass().getConstructor(String.class).newInstance(name);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Failed to create item for type: " + itemType, e);
-        }
+    public static GameItem createGameItem(String name, ItemType itemType, Object additionalInfo) {
+        GameItem gameItem = switch (itemType) {
+            case CARD -> createCard(name, (CardType) additionalInfo);
+            case TERRITORY -> createTerritory(name, (Continent) additionalInfo);
+        };
+        return gameItem;
+    }
+
+    private static Card createCard(String name, CardType cardType) {
+        return new Card(name, cardType);
+    }
+
+    private static Territory createTerritory(String name, Continent continent) {
+        return new Territory(name, continent);
     }
 }

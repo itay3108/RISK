@@ -1,15 +1,16 @@
 package Logic;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Player {
-    private String name;
-    private List<Territory> ownedTerritories;
+    private final String name;
+    private int armies;
+    private final ArrayList<Territory> ownedTerritories;
     // Add other player-related attributes as needed
 
     public Player(String name) {
         this.name = name;
+        this.armies = 33; // place holder
         this.ownedTerritories = new ArrayList<>();
         // Initialize other attributes as needed
     }
@@ -19,4 +20,26 @@ public class Player {
     public void addOwnedTerritory(Territory territory) {
         ownedTerritories.add(territory);
     }
+
+    public ArrayList<Territory> getOwnedTerritories() {
+        return ownedTerritories;
+    }
+
+    public int getTerritoryAmount() {
+        return this.ownedTerritories.size();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getArmies() {
+        return this.armies;
+    }
+
+    public void setArmies(int armies) {
+        this.armies = armies;
+    }
+
+
 }
